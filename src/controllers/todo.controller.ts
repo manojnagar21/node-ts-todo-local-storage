@@ -40,7 +40,7 @@ export const createTodo = (req: Request, res: Response) => {
         console.log("no");
         // res.status(400).json({
         //     errors: error.errors
-        // });   
+        // });
         // const errorResponse = error.errors ? error.errors : { message: error.message || "Unknown error" };
         // return res.status(400).json({
         //     success: false,

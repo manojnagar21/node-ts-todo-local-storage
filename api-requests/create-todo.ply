@@ -6,5 +6,5 @@ create-todo:
     Content-Type: application/json
   body: |-
     {
-      "title": ""
+      "title": "Make Javascript Notes"
     }
