@@ -1,0 +1,10 @@
+create-todo:
+  url: http://localhost:5000/api/todos
+  method: POST
+  headers:
+    Accept: application/json
+    Content-Type: application/json
+  body: |-
+    {
+      "title": ""
+    }

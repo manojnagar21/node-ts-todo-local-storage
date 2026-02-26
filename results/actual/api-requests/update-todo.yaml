@@ -1,0 +1,22 @@
+update-todo:  # 26/2/2026, 15:34:59:166
+  request:
+    url: http://localhost:5000/api/todos/1772099605815
+    method: PATCH
+    headers: {}
+  response:  # 52 ms
+    status:
+      code: 202
+      message: Accepted
+    headers:
+      connection: close
+      content-length: '69'
+      content-type: application/json; charset=utf-8
+      date: Thu, 26 Feb 2026 10:04:59 GMT
+      etag: W/"45-doSkzrtXxMz6sMaJZmi7x9Z8Ejg"
+      x-powered-by: Express
+    body: |-
+      {
+        "id": 1772099605815,
+        "title": "Make Javascript Notes",
+        "completed": true
+      }

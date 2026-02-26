@@ -1,0 +1,17 @@
+check-api:  # 26/2/2026, 15:09:05:609
+  request:
+    url: http://localhost:5000
+    method: GET
+    headers: {}
+  response:  # 35 ms
+    status:
+      code: 200
+      message: OK
+    headers:
+      connection: close
+      content-length: '19'
+      content-type: text/html; charset=utf-8
+      date: Thu, 26 Feb 2026 09:39:05 GMT
+      etag: W/"13-W/x32vAY+/vQEKKNG39GgS5nRKY"
+      x-powered-by: Express
+    body: Todo api is running

@@ -1,0 +1,21 @@
+delete-todo:  # 26/2/2026, 15:42:45:352
+  request:
+    url: http://localhost:5000/api/todos/1772099605815
+    method: DELETE
+    headers: {}
+  response:  # 59 ms
+    status:
+      code: 404
+      message: Not Found
+    headers:
+      connection: close
+      content-length: '39'
+      content-type: application/json; charset=utf-8
+      date: Thu, 26 Feb 2026 10:12:45 GMT
+      etag: W/"27-45rvnny4gUpofdELXN8hDfqtpek"
+      x-powered-by: Express
+    body: |-
+      {
+        "msg": " Todo not available",
+        "data": []
+      }

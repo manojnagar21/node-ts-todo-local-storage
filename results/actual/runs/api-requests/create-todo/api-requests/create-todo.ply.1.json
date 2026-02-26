@@ -1,0 +1,38 @@
+[
+  {
+    "name": "create-todo",
+    "test": "create-todo",
+    "type": "request",
+    "end": "2026-02-26T14:39:28.678Z",
+    "result": {
+      "status": "Submitted",
+      "message": "Request 'create-todo' SUBMITTED"
+    },
+    "request": {
+      "name": "create-todo",
+      "type": "request",
+      "url": "http://localhost:5000/api/todos",
+      "method": "POST",
+      "headers": {},
+      "body": "",
+      "submitted": "2026-02-26T14:39:28.600Z"
+    },
+    "response": {
+      "runId": "1a8c32fb0670",
+      "status": {
+        "code": 400,
+        "message": "Bad Request"
+      },
+      "headers": {
+        "connection": "close",
+        "content-length": "29",
+        "content-type": "application/json; charset=utf-8",
+        "date": "Thu, 26 Feb 2026 14:39:28 GMT",
+        "etag": "W/\"1d-4jhBy21zQ9c+ybSecPVu+Xj9Hpo\"",
+        "x-powered-by": "Express"
+      },
+      "body": "{\n  \"success\": false,\n  \"errors\": {}\n}",
+      "time": 39
+    }
+  }
+]

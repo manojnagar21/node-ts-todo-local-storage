@@ -1,0 +1,4 @@
+get-all-todos:
+  url: http://localhost:5000/api/todos
+  method: GET
+  headers: {}

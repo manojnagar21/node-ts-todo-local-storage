@@ -6,7 +6,7 @@ const getStoredTodos = (): Todo[] => {
     return JSON.parse(localStorage.getItem("todos") || "[]");
 }
 const saveTodos = (todos: Todo[]) => {
-    localStorage.setItem("todo", JSON.stringify(todos));
+    localStorage.setItem("todos", JSON.stringify(todos));
 }
 
 export { getStoredTodos, saveTodos };
