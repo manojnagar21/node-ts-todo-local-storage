@@ -23,40 +23,25 @@ export const getTodo = (req: Request, res: Response) => {
 // Create todo
 export const createTodo = (req: Request, res: Response) => {
     const todos = getStoredTodos();
+    // try {
+    // validate request
     try {
-        // validate request
-        const validated = createTodoSchema.parse(req.body)
-        console.log("yes");
-        console.log("validated", validated);
+        const validated = createTodoSchema.safeParse(req.body);
+        if(!validated.success) {
+            const flattened = z.flattenError(validated.error);
+            return res.status(400).json(flattened.fieldErrors);
+        }
+        const data = validated.data
         const newTodo: Todo = {
             id: Date.now(),
-            title: validated.title,
+            title: data.title,
             completed: false
         };
         todos.push(newTodo);
         saveTodos(todos);
-        res.status(201).json(newTodo);
-    } catch(error: any) {
-        console.log("no");
-        // res.status(400).json({
-        //     errors: error.errors
-        // });
-        // const errorResponse = error.errors ? error.errors : { message: error.message || "Unknown error" };
-        // return res.status(400).json({
-        //     success: false,
-        //     errors: errorResponse
-        // });
-
-
-        if (error instanceof z.ZodError) {
-            return res.status(400).json({
-                success: false,
-                // .flatten() turns that messy string into a clean object
-                errors: error.flatten().fieldErrors 
-            });
-        }
-
-        return res.status(500).json({ success: false, message: "Internal Server Error" });
+        res.status(201).json(newTodo);   
+    } catch (error: any) {
+        res.status(500).json({ msg: "Something went wrong", data: [] });
     }
 };
 
