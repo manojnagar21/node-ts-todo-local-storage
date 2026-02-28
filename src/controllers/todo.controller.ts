@@ -7,7 +7,11 @@ import { z } from "zod";
 
 // Get all todos
 export const getTodos = (_req: Request, res: Response) => {
-    res.status(200).json(getStoredTodos());
+    try {
+        res.status(200).json(getStoredTodos());
+    } catch (error: any) {
+        res.status(500).json({ msg: "Something went wrong", data: [] });
+    }
 };
 // Get todo by id
 export const getTodo = (req: Request, res: Response) => {
@@ -20,7 +24,7 @@ export const getTodo = (req: Request, res: Response) => {
             return res.status(404).send({ msg: "Todo not available", data: [] });
         }
         res.status(200).json({ msg: "Todo found", data: todo });
-    } catch (error) {
+    } catch (error: any) {
         res.status(500).json({ msg: "Something went wrong", data: [] });
     }
 };
