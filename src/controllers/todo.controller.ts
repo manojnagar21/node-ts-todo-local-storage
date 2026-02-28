@@ -7,6 +7,7 @@ import { z } from "zod";
 
 // Get all todos
 export const getTodos = (_req: Request, res: Response) => {
+    // try catch
     try {
         res.status(200).json(getStoredTodos());
     } catch (error: any) {
@@ -30,7 +31,6 @@ export const getTodo = (req: Request, res: Response) => {
 };
 // Create todo
 export const createTodo = (req: Request, res: Response) => {
-    const todos = getStoredTodos();
     // try catch
     try {
         // validate request
@@ -39,6 +39,7 @@ export const createTodo = (req: Request, res: Response) => {
             const flattened = z.flattenError(validated.error);
             return res.status(400).json(flattened.fieldErrors);
         }
+        const todos = getStoredTodos();
         const data = validated.data;
         const newTodo: Todo = {
             id: Date.now(),
@@ -55,15 +56,20 @@ export const createTodo = (req: Request, res: Response) => {
 
 // Toggle completes
 export const toggleTodo = (req: Request, res: Response) => {
-    const todos = getStoredTodos();
-    const id = Number(req.params.id);
-    const todo = todos.find(t => t.id === id);
-    if(!todo) {
-        return res.status(404).send({ msg: "Task not available" });
+    // try catch
+    try {
+        const todos = getStoredTodos();
+        const id = Number(req.params.id);
+        const todo = todos.find(t => t.id === id);
+        if(!todo) {
+            return res.status(404).send({ msg: "Task not available" });
+        }
+        todo.completed = !todo.completed;
+        saveTodos(todos);
+        res.status(202).json(todo);
+    } catch (error: any) {
+        res.status(500).json({ msg: "Something went wrong", data: [] });
     }
-    todo.completed = !todo.completed;
-    saveTodos(todos);
-    res.status(202).json(todo);
 };
 
 // Delete todo
