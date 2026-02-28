@@ -1,4 +1,7 @@
 update-todo:
-  url: http://localhost:5000/api/todos/1772099605815
+  url: http://localhost:5000/api/todos/1772173174124
   method: PATCH
-  headers: {}
+  headers:
+    Accept: application/json
+    Content-Type: application/json
+  body: '{ "title": "" }'

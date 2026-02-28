@@ -2,7 +2,7 @@ import type { Request, Response } from "express";
 import { localStorage } from "../storage/localstorage.js";
 import type { Todo } from "../types/todo.js";
 import { getStoredTodos, saveTodos } from "../helpers/todoHelpers.js";
-import { createTodoSchema, idParamSchema } from "../validations/todo.validation.js";
+import { createTodoSchema, idParamSchema, updateTodoSchema } from "../validations/todo.validation.js";
 import { z } from "zod";
 
 // Get all todos
@@ -58,9 +58,29 @@ export const createTodo = (req: Request, res: Response) => {
 export const toggleTodo = (req: Request, res: Response) => {
     // try catch
     try {
+        // validate request
+        const paramsValidated = idParamSchema.safeParse(req.params);
+        console.log(paramsValidated);
+        console.log(req.body);
+        if(req.body) {
+            const reqValidated = updateTodoSchema.safeParse(req.body);
+            console.log(reqValidated);
+            if(!reqValidated.success) {
+                const flattened = z.flattenError(reqValidated.error);
+                return res.status(400).json(flattened.fieldErrors);
+            }
+            const dataReq = reqValidated.data;
+        }
+        if(!paramsValidated.success) {
+            const flattened = z.flattenError(paramsValidated.error);
+            return res.status(400).json(flattened.fieldErrors);
+        }
+        
+        const dataId = paramsValidated.data;
         const todos = getStoredTodos();
-        const id = Number(req.params.id);
+        const id = Number(dataId.id);
         const todo = todos.find(t => t.id === id);
+
         if(!todo) {
             return res.status(404).send({ msg: "Task not available" });
         }
@@ -74,23 +94,36 @@ export const toggleTodo = (req: Request, res: Response) => {
 
 // Delete todo
 export const deleteTodo = (req: Request, res: Response) => {
-    let todos = getStoredTodos();
-    const id = Number(req.params.id);
-    let todoToDelete = todos.find(t => t.id === id);
-    if(!todoToDelete) {
-        res.status(404).json({ msg: " Todo not available", data: [] });
+    // try catch
+    try {
+        // validate request
+        const validated = idParamSchema.safeParse(req.params);
+        if(!validated.success) {
+            const flattened = z.flattenError(validated.error);
+            return res.status(400).json(flattened.fieldErrors);
+        }
+        
+        const data = validated.data;
+        let todos = getStoredTodos();
+        const id = Number(req.params.id);
+        let todoToDelete = todos.find(t => t.id === id);
+        if(!todoToDelete) {
+            return res.status(404).json({ msg: " Todo not available", data: [] });
+        }
+        todos = todos.filter(t => t.id !== id);
+        saveTodos(todos);
+        res.status(200).send({ msg: "Todo deleted", data: todoToDelete });
+    } catch (error) {
+        res.status(500).json({ msg: "Something went wrong", data: [] });
     }
-    todos = todos.filter(t => t.id !== id);
-    saveTodos(todos);
-    res.status(200).send({ msg: "Todo deleted", data: todoToDelete });
 }
 
 
 /*
 https://www.programiz.com/online-compiler/5kB2JJIh5AV7w
-https://www.programiz.com/online-compiler/4J89mmRnN7Dxl
-https://www.programiz.com/online-compiler/7ysgPPG7Md3nO
-https://www.programiz.com/online-compiler/4qxLQQiaZ5cZk
+https://www.programiz.com/online-compiler/1udpRzcKDHvz8
+https://www.programiz.com/online-compiler/6qxLusxgF599h
+https://www.programiz.com/online-compiler/9UzK7nJ9SZY1k
 https://www.programiz.com/online-compiler/69Js00efAi3B3
 https://www.programiz.com/online-compiler/1puvqqhJgY9KU
 */

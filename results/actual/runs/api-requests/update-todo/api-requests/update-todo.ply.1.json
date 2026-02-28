@@ -1,0 +1,41 @@
+[
+  {
+    "name": "update-todo",
+    "test": "update-todo",
+    "type": "request",
+    "end": "2026-02-28T13:43:21.726Z",
+    "result": {
+      "status": "Submitted",
+      "message": "Request 'update-todo' SUBMITTED"
+    },
+    "request": {
+      "name": "update-todo",
+      "type": "request",
+      "url": "http://localhost:5000/api/todos/1772173174124",
+      "method": "PATCH",
+      "headers": {
+        "Accept": "application/json",
+        "Content-Type": "application/json"
+      },
+      "body": "{ \"title\": 123 }",
+      "submitted": "2026-02-28T13:43:21.643Z"
+    },
+    "response": {
+      "runId": "220fe82ba420",
+      "status": {
+        "code": 400,
+        "message": "Bad Request"
+      },
+      "headers": {
+        "connection": "close",
+        "content-length": "34",
+        "content-type": "application/json; charset=utf-8",
+        "date": "Sat, 28 Feb 2026 13:43:21 GMT",
+        "etag": "W/\"22-Yplx5rDw7vV2uQjDwUxWItT3m5s\"",
+        "x-powered-by": "Express"
+      },
+      "body": "{\n  \"title\": [\n    \"Only text is allowed\"\n  ]\n}",
+      "time": 45
+    }
+  }
+]
