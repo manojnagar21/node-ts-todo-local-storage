@@ -1,6 +1,6 @@
-get-todo:  # 26/2/2026, 15:36:31:481
+get-todo:  # 28/2/2026, 14:58:19:384
   request:
-    url: http://localhost:5000/api/todos/1772099605815
+    url: http://localhost:5000/api/todos/1772115719768
     method: GET
     headers: {}
   response:  # 38 ms
@@ -9,17 +9,17 @@ get-todo:  # 26/2/2026, 15:36:31:481
       message: OK
     headers:
       connection: close
-      content-length: '97'
+      content-length: '78'
       content-type: application/json; charset=utf-8
-      date: Thu, 26 Feb 2026 10:06:31 GMT
-      etag: W/"61-ow/HX9zjaGl2JKeH0NBsNsR4BDw"
+      date: Sat, 28 Feb 2026 09:28:19 GMT
+      etag: W/"4e-F5MYPSd+dDeVIlgXkxgzySPcgNo"
       x-powered-by: Express
     body: |-
       {
         "msg": "Todo found",
         "data": {
-          "id": 1772099605815,
-          "title": "Make Javascript Notes",
-          "completed": true
+          "id": 1772115719768,
+          "title": "a",
+          "completed": false
         }
       }
