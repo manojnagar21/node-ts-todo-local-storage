@@ -55,7 +55,7 @@ export const createTodo = (req: Request, res: Response) => {
 };
 
 // Toggle completes
-export const toggleTodo = (req: Request, res: Response) => {
+export const toggleTodoOld = (req: Request, res: Response) => {
     // try catch
     try {
         // validate request
@@ -85,6 +85,67 @@ export const toggleTodo = (req: Request, res: Response) => {
             return res.status(404).send({ msg: "Task not available" });
         }
         todo.completed = !todo.completed;
+        saveTodos(todos);
+        res.status(202).json(todo);
+    } catch (error: any) {
+        res.status(500).json({ msg: "Something went wrong", data: [] });
+    }
+};
+
+
+// Toggle completes
+export const toggleTodo = (req: Request, res: Response) => {
+    // try catch
+    try {
+        // validate request
+        const params = idParamSchema.safeParse(req.params);
+        // console.log(paramsValidated);
+
+        // if (req.body.completed === "true") req.body.completed = true;
+        // if (req.body.completed === "false") req.body.completed = false;
+        // if ((req.body.completed !== "true" || req.body.completed !== "false") && typeof req.body.completed !== 'boolean') {
+        //     req.body.completed = undefined;
+        // }
+
+        if(!params.success) {
+            // const flattened = z.flattenError(params.error);
+            return res.status(400).json(z.flattenError(params.error).fieldErrors);
+        }
+        console.log("request body ", req.body);
+        const body = updateTodoSchema.safeParse(req.body);
+        console.log("request validated ", body);
+        if(!body.success) {
+            // const flattened = z.flattenError(body.error);
+            return res.status(400).json(z.flattenError(body.error).fieldErrors);
+        }
+        // if(req.body) {
+            
+        // }
+        
+        const { id } = params.data;
+        const data = body.data;
+        console.log("data request ", data)
+        const todos = getStoredTodos();
+        // const id = Number(dataId.id);
+        const todo = todos.find(t => t.id === Number(id));
+
+        if(!todo) {
+            return res.status(404).send({ msg: "Task not available" });
+        }
+        if (data?.title !== undefined) {
+            todo.title = data.title;
+        }
+        // if (dataReq?.completed !== undefined) {
+        //     todo.completed = dataReq.completed;
+        // } else {
+        //     console.log("yes")
+        //     todo.completed = !todo.completed;
+        // }
+        // todo.completed = !todo.completed;
+        todo.completed = 
+            data.completed !== undefined
+                ? data.completed
+                : !todo.completed
         saveTodos(todos);
         res.status(202).json(todo);
     } catch (error: any) {

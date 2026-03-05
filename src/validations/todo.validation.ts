@@ -15,8 +15,17 @@ export const updateTodoSchema = z.object({
         .min(1)
         .max(100)
         .trim()
-        .optional(),
-    completed: z.boolean().optional()
+        .optional()
+        .or(z.literal('').transform(() => undefined)),
+    completed: z
+        .preprocess((value) => {
+            if (value === "true" || value === true) return true;
+            if (value === "false" || value === false) return false;
+            return undefined; // everything else → toggle
+        }, 
+        z
+            .boolean()
+            .optional())
 });
 
 // ID param validation

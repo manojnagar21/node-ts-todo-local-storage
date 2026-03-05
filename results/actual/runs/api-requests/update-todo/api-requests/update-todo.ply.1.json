@@ -3,7 +3,7 @@
     "name": "update-todo",
     "test": "update-todo",
     "type": "request",
-    "end": "2026-02-28T13:43:21.726Z",
+    "end": "2026-03-05T14:46:08.660Z",
     "result": {
       "status": "Submitted",
       "message": "Request 'update-todo' SUBMITTED"
@@ -17,25 +17,24 @@
         "Accept": "application/json",
         "Content-Type": "application/json"
       },
-      "body": "{ \"title\": 123 }",
-      "submitted": "2026-02-28T13:43:21.643Z"
+      "submitted": "2026-03-05T14:46:08.562Z"
     },
     "response": {
-      "runId": "220fe82ba420",
+      "runId": "794e9bbca968",
       "status": {
-        "code": 400,
-        "message": "Bad Request"
+        "code": 202,
+        "message": "Accepted"
       },
       "headers": {
         "connection": "close",
-        "content-length": "34",
+        "content-length": "69",
         "content-type": "application/json; charset=utf-8",
-        "date": "Sat, 28 Feb 2026 13:43:21 GMT",
-        "etag": "W/\"22-Yplx5rDw7vV2uQjDwUxWItT3m5s\"",
+        "date": "Thu, 05 Mar 2026 14:46:08 GMT",
+        "etag": "W/\"45-lQ2KryJPzbnRnzQ70XymHZ6X7SE\"",
         "x-powered-by": "Express"
       },
-      "body": "{\n  \"title\": [\n    \"Only text is allowed\"\n  ]\n}",
-      "time": 45
+      "body": "{\n  \"id\": 1772173174124,\n  \"title\": \"Make Javascript Notes\",\n  \"completed\": true\n}",
+      "time": 58
     }
   }
 ]
