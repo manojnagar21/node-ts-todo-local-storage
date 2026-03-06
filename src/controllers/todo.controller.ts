@@ -166,7 +166,7 @@ export const deleteTodo = (req: Request, res: Response) => {
         
         const data = validated.data;
         let todos = getStoredTodos();
-        const id = Number(req.params.id);
+        const id = Number(data.id);
         let todoToDelete = todos.find(t => t.id === id);
         if(!todoToDelete) {
             return res.status(404).json({ msg: " Todo not available", data: [] });
@@ -187,4 +187,5 @@ https://www.programiz.com/online-compiler/6qxLusxgF599h
 https://www.programiz.com/online-compiler/9UzK7nJ9SZY1k
 https://www.programiz.com/online-compiler/69Js00efAi3B3
 https://www.programiz.com/online-compiler/1puvqqhJgY9KU
+SELECT USER_NAME() AS CurrentUser, SUSER_SNAME() AS CurrentLogin;
 */

@@ -4,4 +4,4 @@ update-todo:
   headers:
     Accept: application/json
     Content-Type: application/json
-  body: '{ "completed": "true" }'
+  body: "{ \r\n  \"title\": 1234,\r\n  \"completed\": \"true\"\r\n}"

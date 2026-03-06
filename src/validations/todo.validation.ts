@@ -11,12 +11,19 @@ export const createTodoSchema = z.object({
 // Update todo validation
 export const updateTodoSchema = z.object({
     title: z
-        .string()
-        .min(1)
-        .max(100)
-        .trim()
-        .optional()
-        .or(z.literal('').transform(() => undefined)),
+        .preprocess((value) => {
+            if (typeof value === "number") 
+                return "" + value;
+            // if (value === "false" || value === false) return false;
+            return value; // everything else → toggle
+        },
+        z
+            .string()
+            .min(1)
+            .max(100)
+            .trim()
+            .optional()
+            .or(z.literal('').transform(() => undefined))),
     completed: z
         .preprocess((value) => {
             if (value === "true" || value === true) return true;
