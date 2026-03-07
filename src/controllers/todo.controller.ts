@@ -97,7 +97,7 @@ export const toggleTodoOld = (req: Request, res: Response) => {
 export const toggleTodo = (req: Request, res: Response) => {
     // try catch
     try {
-        // validate request
+        // validate params request
         const params = idParamSchema.safeParse(req.params);
         // console.log(paramsValidated);
 
@@ -112,6 +112,7 @@ export const toggleTodo = (req: Request, res: Response) => {
             return res.status(400).json(z.flattenError(params.error).fieldErrors);
         }
         console.log("request body ", req.body);
+        // validate body request
         const body = updateTodoSchema.safeParse(req.body);
         console.log("request validated ", body);
         if(!body.success) {

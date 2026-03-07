@@ -1,0 +1,33 @@
+update-todo:  # 7/3/2026, 19:44:59:312
+  request:
+    url: http://localhost:5000/api/todos/1772892365370
+    method: PATCH
+    headers:
+      Accept: application/json
+      Content-Type: application/json
+    body: |-
+      { 
+        "title": 1234,
+        "completed": "true"
+      }
+  response:  # 88 ms
+    status:
+      code: 400
+      message: Bad Request
+    headers:
+      connection: close
+      content-length: '107'
+      content-type: application/json; charset=utf-8
+      date: Sat, 07 Mar 2026 14:14:59 GMT
+      etag: W/"6b-DUKMU481267QUxlHuXKXl096jiE"
+      x-powered-by: Express
+    body: |-
+      {
+        "status": "error",
+        "errors": [
+          {
+            "field": "id",
+            "message": "Invalid input: expected string, received undefined"
+          }
+        ]
+      }

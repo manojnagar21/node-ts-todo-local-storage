@@ -1,6 +1,6 @@
-get-todo:  # 28/2/2026, 14:58:19:384
+get-todo:  # 7/3/2026, 19:36:35:764
   request:
-    url: http://localhost:5000/api/todos/1772115719768
+    url: http://localhost:5000/api/todos/1772892365370
     method: GET
     headers: {}
   response:  # 38 ms
@@ -9,17 +9,17 @@ get-todo:  # 28/2/2026, 14:58:19:384
       message: OK
     headers:
       connection: close
-      content-length: '78'
+      content-length: '80'
       content-type: application/json; charset=utf-8
-      date: Sat, 28 Feb 2026 09:28:19 GMT
-      etag: W/"4e-F5MYPSd+dDeVIlgXkxgzySPcgNo"
+      date: Sat, 07 Mar 2026 14:06:35 GMT
+      etag: W/"50-ixGW5VEmbsUOuvjvvq8KnTbF4Vg"
       x-powered-by: Express
     body: |-
       {
         "msg": "Todo found",
         "data": {
-          "id": 1772115719768,
-          "title": "a",
-          "completed": false
+          "id": 1772892365370,
+          "title": "1234",
+          "completed": true
         }
       }

@@ -1,0 +1,41 @@
+[
+  {
+    "name": "create-todo",
+    "test": "create-todo",
+    "type": "request",
+    "end": "2026-03-07T14:16:26.147Z",
+    "result": {
+      "status": "Submitted",
+      "message": "Request 'create-todo' SUBMITTED"
+    },
+    "request": {
+      "name": "create-todo",
+      "type": "request",
+      "url": "http://localhost:5000/api/todos",
+      "method": "POST",
+      "headers": {
+        "Accept": "application/json",
+        "Content-Type": "application/json"
+      },
+      "body": "{\n  \"title\": \"Make Javascript Notes\"\n}",
+      "submitted": "2026-03-07T14:16:26.032Z"
+    },
+    "response": {
+      "runId": "77c26038aaa0",
+      "status": {
+        "code": 201,
+        "message": "Created"
+      },
+      "headers": {
+        "connection": "close",
+        "content-length": "70",
+        "content-type": "application/json; charset=utf-8",
+        "date": "Sat, 07 Mar 2026 14:16:26 GMT",
+        "etag": "W/\"46-cSH5JSQRGx5I3e9jAMj+dtCvBZg\"",
+        "x-powered-by": "Express"
+      },
+      "body": "{\n  \"id\": 1772892986119,\n  \"title\": \"Make Javascript Notes\",\n  \"completed\": false\n}",
+      "time": 78
+    }
+  }
+]
